@@ -1,0 +1,46 @@
+openapi: 3.0.0
+info:
+  title: Tradutor para Língua Mágica
+  description: API para traduzir frases do latim para uma língua mágica inventada.
+  version: 1.0.0
+servers:
+  - url: https://sua-api-aqui.com/v1
+    description: Servidor principal da API de tradução para língua mágica
+paths:
+  /translate:
+    post:
+      operationId: translateLatinToMagic
+      summary: Traduz uma frase do latim para a língua mágica
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fraseLatim:
+                  type: string
+                  description: A frase em latim a ser traduzida.
+      responses:
+        '200':
+          description: A tradução foi realizada com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  fraseTraduzida:
+                    type: string
+                    description: A frase traduzida para a língua mágica.
+                  detalhes:
+                    type: object
+                    properties:
+                      divisaoSilabas:
+                        type: array
+                        items:
+                          type: string
+                      silabasInvertidas:
+                        type: array
+                        items:
+                          type: string
+                    description: Detalhes adicionais sobre o processo de tradução.
